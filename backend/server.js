@@ -43,6 +43,7 @@ app.use(passport.session())
 
 //? Routes 
 app.use('/auth', require('./Routes/auth'))
+app.use('/friend', require('./Routes/friends'))
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })

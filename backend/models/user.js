@@ -21,6 +21,15 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  friends: {
+    type: [String]
+  },
+  sentRequest:{
+    type:[String]
+  },
+  recievedRequest:{
+    type: [String]
   }
 });
 
