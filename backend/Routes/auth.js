@@ -2,7 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 require('../config/passport')
 const registerControl = require('../Controllers/register');
-const isAuthenticated = require('../config/isauth')
+const isAuthenticated = require('../config/isauth').ensureAuthenticated
 const logoutControl = require('../Controllers/logout');
 
 

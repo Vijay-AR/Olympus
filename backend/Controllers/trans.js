@@ -22,7 +22,7 @@ const getTrans = async (req, res) => {
   const { userId } = req.param;
 
   try {
-    const transaction = await Transaction.find({ userId: userId }, {userId: -1}).exec();
+    const transaction = await Transaction.findOne({ userId: userId }, {userId: -1}).exec();
     res.json({ transaction }).status(200);
   } catch (error) {
     console.error(error);

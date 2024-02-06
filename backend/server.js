@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 })
 app.use('/transaction', require('./Routes/trans'))
 app.use('/savings', require('./Routes/savings'))
-
+app.use('/bill', require('./Routes/bills'))
 
 
 //?database connection
