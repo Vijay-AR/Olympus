@@ -60,7 +60,6 @@ const deleteTrans = async(req, res)=>{
     try{
         const transaction = await Transaction.find({id})
         if(!transaction) return res.status(404).json({message: "Unable to fetch the given transaction"})
-        
         const deleted = await Transaction.findByIdAndDelete({id})
         res.staus(200).json({message: "Deleted Succesfully"})
     }catch(error){
