@@ -46,6 +46,7 @@ app.use('/auth', require('./Routes/auth'))
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+app.use('/transaction', require('./Routes/trans'))
 
 
 
