@@ -30,7 +30,27 @@ const UserSchema = new mongoose.Schema({
   },
   recievedRequest:{
     type: [String]
-  }
+  },
+  image:{
+    type: String,
+    default: {}
+  },
+  inbox:{
+    type:[String],
+    default: {}
+  },
+  badges:{
+    type:[String]
+  },
+  friends:{
+    type:[String]
+  },
+  sentRequests:{
+    type:[String]
+  },
+  receivedRequests:{
+    type:[String]
+},
 });
 
 const User = mongoose.model('User', UserSchema);
