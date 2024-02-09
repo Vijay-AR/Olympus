@@ -21,7 +21,28 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  image:{
+    type: String,
+    default: {}
+  },
+  inbox:{
+    type:[String],
+    default: {}
+  },
+  badges:{
+    type:[String]
+  },
+  friends:{
+    type:[String]
+  },
+  sentRequests:{
+    type:[String]
+  },
+  receivedRequests:{
+    type:[String]
+},
+
 });
 
 const User = mongoose.model('User', UserSchema);
