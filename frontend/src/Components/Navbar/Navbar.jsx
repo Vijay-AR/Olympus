@@ -21,6 +21,7 @@ function Navbar({flag }) {
         const loggedInUser = localStorage.getItem("user");
         if (loggedInUser) {
           const foundUser = JSON.parse(loggedInUser);
+          // console.log(foundUser)
           setNavuser(foundUser);
         }
       } catch (err) {
@@ -31,7 +32,6 @@ function Navbar({flag }) {
   }, [flag]);
   const handleLogout = () => {
     localStorage.clear();
-    logout();
     navigate("/login");
   };
   const handleLogin = () => {

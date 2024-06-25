@@ -57,7 +57,7 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
               Name: {user?.name}
             </div>
             <div className="name text-slate-900" style={{ fontSize: "24px"}}>
-              Username: {user?.name}
+              Username: {user?.username}
             </div>
           </div>
           <label htmlFor="photo-upload" className="photo-icon">

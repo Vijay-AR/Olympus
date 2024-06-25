@@ -20,13 +20,13 @@ function Signup({ setUser }) {
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
     setPassword(newPassword);
-    setIsPassValid(checkPassword(newPassword));
+    setIsPassValid(1);
   };
 
   const checkPassword = (password) => {
     // Password validation rules
     const passwordRegex = /^(?=.[A-Z])(?=.\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(password);
+    return 1;
   };
 
   const handleEmailChange = (event) => {
@@ -63,7 +63,7 @@ function Signup({ setUser }) {
     setSubmitClicked(true);
 
     if (
-      !isPassValid ||
+      // !isPassValid ||
       !isUsernameValid ||
       password !== confirmPass ||
       !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
