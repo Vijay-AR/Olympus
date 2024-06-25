@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     if (existingUserEmail) {
       return res
         .status(400)
-        .json({ success: false, message: "Email is already in use." });
+        .json({ success: false, message: "Try using different email or username." });
     }
 
     const newUser = new User({

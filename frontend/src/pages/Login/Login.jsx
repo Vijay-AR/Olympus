@@ -4,7 +4,7 @@ import axios from "axios";
 import { useAuth } from "../../Context/AuthContext";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
-function Login() {
+function Login({user, setUser}) {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setEmail] = useState("");
@@ -37,11 +37,12 @@ function Login() {
 
     const userData = { email, password };
     try {
-      const res = await axios.post("http://localhost:3001/auth/login", userData);
-      login(res.data);
+      const res = await axios.post("http://localhost:3001/auth/login", userData)
+      console.log(res)
+      setUser(res.data)
       navigate('/dashboard');
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err);
       alert(err.response.data.message);
     }
 

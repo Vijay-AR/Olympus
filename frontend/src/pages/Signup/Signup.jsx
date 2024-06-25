@@ -73,14 +73,13 @@ function Signup({ setUser }) {
         email,
         password,
       });
-
+      console.log(res.data.newUser)
       setUser(res.data.newUser);
-      localStorage.setItem('user', JSON.stringify(res.data.newUser));
       navigate('/dashboard');
       alert('Logged in successfully');
     } catch (err) {
       console.log(err);
-      alert('Error signing up. Please try again.');
+      alert(err.response.data.message)
     }
 
     // Clear form fields after successful submission
