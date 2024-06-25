@@ -1,5 +1,19 @@
 const user = require('../models/user');
 
+async function getFriends(req,res){
+    const {userId} = req.params
+    try {
+        if(!userId){
+            return res.status(400).json({message: 'User ID is required'})
+        }
+        const userr= await user.findById(userId)
+        if(!userr) return res.status(200).json({ message: "User not found !!" })
+        return res.json({message : "Inbox received"}, userr).status(200)        
+    } catch (err) {
+        console.log(err, 'error with fetching the inbox');
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
 async function sentRequest(req, res) {
     const {userId} = req.params
     const friend = req.body.friendName
@@ -45,10 +59,10 @@ async function acceptRequest(req, res) {
         console.log('user: ', usser)
         console.log('friend: ', friendDocument)
 
-        const acceptingFriend = await user.findByIdAndUpdate(userId, { $push: { friends: friend }, $pull: { receivedRequests: friend } }, {new: true });
-        const updateWaitingList = await user.findByIdAndUpdate(friendDocument._id, {$push:{friends: username, inbox:`${username} accepted your friend request`}, $pull:{sentRequest: username}}, {new: true});
+        const myAcc = await user.findByIdAndUpdate(userId, { $push: { friends: friend }, $pull: { receivedRequests: friend } }, {new: true });
+        const friendAcc = await user.findByIdAndUpdate(friendDocument._id, {$push:{friends: username, inbox:`${username} accepted your friend request`}, $pull:{sentRequest: username}}, {new: true});
 
-        res.json({acceptingFriend, updateWaitingList, message: 'Friend Request Accepted'})
+        res.json({myAcc, friendAcc, message: 'Friend Request Accepted'})
     } catch (err) {
         console.log(err, 'error with the accepting the request');
         return res.status(500).json({ error: "Internal Server Error" });
@@ -58,4 +72,4 @@ async function acceptRequest(req, res) {
 
 
 
-module.exports = {sentRequest, acceptRequest}
+module.exports = {sentRequest, acceptRequest, getFriends}

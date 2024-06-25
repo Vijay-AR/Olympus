@@ -5,6 +5,7 @@ import Signup from "./pages/Signup/Signup.jsx";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Dues from "./pages/Dues/Dues.jsx";
+import axios from "axios";
 import Savings2 from "./pages/Savings/Savings2.jsx";
 import Main from "./pages/Groups/Main.jsx";
 import SimplifyDebt from "./pages/Groups/SimplifyDebt.jsx";
@@ -18,7 +19,21 @@ function App() {
     JSON.parse(localStorage.getItem("user")) || {}
   );
   useEffect(() => {
+    const getUser = async ()=> {
+      try {
+        const res = await axios.get(`http://localhost:3001/profile/getInbox/${user._id}`)
+        setUser(res.data);
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getUser()
+  }, [])
+
+  
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
+    console.log(user)
   }, [user]);
 
   return (
