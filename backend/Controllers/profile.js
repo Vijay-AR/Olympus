@@ -16,8 +16,8 @@ const getInbox = async(req,res)=>{
     const {userId} = req.params
     try{
         const User= await user.findOne({_id: userId})
-        const data = User.inbox
-        res.json({data})
+        const data = User
+        res.json(data)
     }catch(err){
         res.json("user not found")
     }

@@ -45,7 +45,6 @@ const GroupCard = ({
 
   //! Checked friends are send to join the group
   const handleAddFriendsToGroup = async () => {
-    console.log(friends);
     try {
       const res = await axios.put(
         `http://localhost:3001/group/addfriend/${groupData._id}`,
