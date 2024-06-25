@@ -1,6 +1,5 @@
 const Bill = require('../models/bills')
 
-
 async function add(req, res) {
     const savingData = new Bill(req.body.dueItem);
     try {

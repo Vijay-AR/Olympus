@@ -25,6 +25,7 @@ const creategroup = async (req, res) => {
     console.log(err);
   }
 };
+
 const getDebts = async (req, res) => {
   const { groupId } = req.params;
 
@@ -36,6 +37,7 @@ const getDebts = async (req, res) => {
     console.log(err);
   }
 };
+
 const joingroup = async (req, res) => {
   // console.log(req.body.joinCode)
   const { userId, JoingCode } = req.body.joinCode;

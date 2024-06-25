@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Context/AuthContext";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Import eye icons
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // Import eye icons
 
-function Login() {
+function Login({ user, setUser }) {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setEmail] = useState("");
@@ -37,11 +37,15 @@ function Login() {
 
     const userData = { email, password };
     try {
-      const res = await axios.post("http://localhost:3001/auth/login", userData);
-      login(res.data);
-      navigate('/dashboard');
+      const res = await axios.post(
+        "http://localhost:3001/auth/login",
+        userData
+      );
+      console.log(res);
+      setUser(res.data);
+      navigate("/dashboard");
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err);
       alert(err.response.data.message);
     }
 
@@ -51,9 +55,14 @@ function Login() {
 
   return (
     <>
-      <form onSubmit={submitFunction} className="flex justify-center items-center h-screen bg-slate-400">
+      <form
+        onSubmit={submitFunction}
+        className="flex justify-center items-center h-screen bg-slate-400"
+      >
         <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-2xl">
-          <div className="text-3xl font-bold text-center text-slate-600 mb-6">Login</div>
+          <div className="text-3xl font-bold text-center text-slate-600 mb-6">
+            Login
+          </div>
           <div className="space-y-4">
             <div className="flex flex-col">
               <input
@@ -66,7 +75,7 @@ function Login() {
                 required
               />
             </div>
-            
+
             <div className="flex flex-col relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -85,7 +94,7 @@ function Login() {
               </span>
             </div>
 
-            <button 
+            <button
               type="submit"
               className="bg-slate-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
             >
@@ -93,8 +102,11 @@ function Login() {
             </button>
 
             <div className="text-center text-slate-600 text-sm">
-              Don't have an account?  
-              <Link to="/signup" className="text-slate-600 hover:underline font-semibold">
+              Don't have an account?
+              <Link
+                to="/signup"
+                className="text-slate-600 hover:underline font-semibold"
+              >
                 Sign up
               </Link>
             </div>

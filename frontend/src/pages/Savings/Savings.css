@@ -70,8 +70,8 @@
     padding: 10px;
     text-align: left;
     width: 100%;
-    border: 2px solid #333;
-    /* Gold */
+    border: 2px solid gray;
+   
     border-radius: 8px;
 }
 

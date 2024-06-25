@@ -1,5 +1,5 @@
 const router = require('express').Router()
-import groupControl from "../controllers/groups.js";
+import groupControl from "../controllers/group.js";
 
 router.post("/creategroup",groupControl.creategroup)
 router.post("/joingroup",groupControl.joingroup)

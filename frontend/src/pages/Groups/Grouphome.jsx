@@ -79,6 +79,7 @@ const Grouphome = ({ user, thememode, toggle }) => {
     try {
       const res = await axios.put(
         `http://localhost:3001/group/markapproved/${groupData._id}`,
+        `http://localhost:3001/group/markapproved/${groupData._id}`,
         { userId: memid }
       );
       setApproved((prev) => !prev);

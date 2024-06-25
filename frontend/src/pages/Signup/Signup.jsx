@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './SignUp.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./SignUp.css";
 
 function Signup({ setUser }) {
   const navigate = useNavigate();
 
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [confirmPass, setConfirmPass] = useState('');
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const [isPassValid, setIsPassValid] = useState(false);
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +25,7 @@ function Signup({ setUser }) {
 
   const checkPassword = (password) => {
     // Password validation rules
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.[A-Z])(?=.\d)[A-Za-z\d]{8,}$/;
     return passwordRegex.test(password);
   };
 
@@ -62,39 +62,48 @@ function Signup({ setUser }) {
     event.preventDefault();
     setSubmitClicked(true);
 
-    if (!isPassValid || !isUsernameValid || password !== confirmPass || !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    if (
+      !isPassValid ||
+      !isUsernameValid ||
+      password !== confirmPass ||
+      !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+    ) {
       return;
     }
 
     try {
-      const res = await axios.post('http://localhost:3001/auth/register', {
+      const res = await axios.post("http://localhost:3001/auth/register", {
         name,
         username,
         email,
         password,
       });
-
+      console.log(res.data.newUser);
       setUser(res.data.newUser);
-      localStorage.setItem('user', JSON.stringify(res.data.newUser));
-      navigate('/dashboard');
-      alert('Logged in successfully');
+      navigate("/dashboard");
+      alert("Logged in successfully");
     } catch (err) {
       console.log(err);
-      alert('Error signing up. Please try again.');
+      alert(err.response.data.message);
     }
 
     // Clear form fields after successful submission
-    setEmail('');
-    setPassword('');
-    setUsername('');
-    setName('');
-    setConfirmPass('');
+    setEmail("");
+    setPassword("");
+    setUsername("");
+    setName("");
+    setConfirmPass("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center items-center h-screen bg-slate-400">
+    <form
+      onSubmit={handleSubmit}
+      className="flex justify-center items-center h-screen bg-slate-400"
+    >
       <div className="w-full max-w-sm py-2 px-4 bg-white m-4 rounded-lg shadow-lg">
-        <div className="text-3xl font-bold text-center text-slate-600 m-4">Sign Up</div>
+        <div className="text-3xl font-bold text-center text-slate-600 m-4">
+          Sign Up
+        </div>
         <div className="space-y-4">
           <div className="flex flex-col">
             <input
@@ -104,12 +113,14 @@ function Signup({ setUser }) {
               name="username"
               onChange={handleUsernameChange}
               className={`input-signup border-b-2 border-slate-100 py-2 px-3 focus:outline-none focus:border-slate-700 transition duration-300 ${
-                submitClicked && !isUsernameValid ? 'border-red-500' : ''
+                submitClicked && !isUsernameValid ? "border-red-500" : ""
               }`}
               required
             />
             {submitClicked && !isUsernameValid && (
-              <span className="text-sm text-red-500">Username must be at least 5 characters long</span>
+              <span className="text-sm text-red-500">
+                Username must be at least 5 characters long
+              </span>
             )}
           </div>
           <div className="flex flex-col">
@@ -130,24 +141,32 @@ function Signup({ setUser }) {
               placeholder="Email"
               name="email"
               className={`input-signup border-b-2 border-slate-100 py-2 px-3 focus:outline-none focus:border-slate-700 transition duration-300 ${
-                submitClicked && !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) ? 'border-red-500' : ''
+                submitClicked &&
+                !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+                  ? "border-red-500"
+                  : ""
               }`}
               value={email}
               onChange={handleEmailChange}
               required
             />
-            {submitClicked && !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) && (
-              <span className="text-sm text-red-500">Enter a valid email address</span>
-            )}
+            {submitClicked &&
+              !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) && (
+                <span className="text-sm text-red-500">
+                  Enter a valid email address
+                </span>
+              )}
           </div>
 
           <div className="flex flex-col relative">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               value={password}
               placeholder="Password"
               className={`input-signup border-b-2 border-slate-100 py-2 px-3 focus:outline-none focus:border-slate-700 transition duration-300 ${
-                submitClicked && (!isPassValid || !checkPassword(password)) ? 'border-red-500' : ''
+                submitClicked && (!isPassValid || !checkPassword(password))
+                  ? "border-red-500"
+                  : ""
               }`}
               onChange={handlePasswordChange}
               name="password"
@@ -158,22 +177,27 @@ function Signup({ setUser }) {
               className="absolute right-3 top-3 text-slate-600 hover:text-slate-700"
               onClick={togglePasswordVisibility}
             >
-              {showPassword ? '🙈' : '👁️'}
+              {showPassword ? "🙈" : "👁️"}
             </button>
             {submitClicked && (!isPassValid || !checkPassword(password)) && (
-              <span className="text-sm text-red-500">Password must be at least 8 characters long and contain at least one capital letter and one digit</span>
+              <span className="text-sm text-red-500">
+                Password must be at least 8 characters long and contain at least
+                one capital letter and one digit
+              </span>
             )}
           </div>
 
           <div className="flex flex-col relative">
             <input
-              type={showConfirmPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm Password"
               value={confirmPass}
               name="confirmPassword"
               onChange={handleConfirmPasswordChange}
               className={`input-signup border-b-2 border-slate-100 py-2 px-3 focus:outline-none focus:border-slate-700 transition duration-300 ${
-                submitClicked && password !== confirmPass ? 'border-red-500' : ''
+                submitClicked && password !== confirmPass
+                  ? "border-red-500"
+                  : ""
               }`}
               required
             />
@@ -182,10 +206,12 @@ function Signup({ setUser }) {
               className="absolute right-3 top-3 text-slate-600 hover:text-slate-700"
               onClick={toggleConfirmPasswordVisibility}
             >
-              {showConfirmPassword ? '🙈' : '👁️'}
+              {showConfirmPassword ? "🙈" : "👁️"}
             </button>
             {submitClicked && password !== confirmPass && (
-              <span className="text-sm text-red-500">Passwords do not match</span>
+              <span className="text-sm text-red-500">
+                Passwords do not match
+              </span>
             )}
           </div>
 
@@ -198,7 +224,10 @@ function Signup({ setUser }) {
 
           <div className="text-center text-slate-600 text-sm">
             Already have an account?
-            <Link to="/login" className="text-slate-600 hover:underline font-semibold">
+            <Link
+              to="/login"
+              className="text-slate-600 hover:underline font-semibold"
+            >
               Login
             </Link>
           </div>

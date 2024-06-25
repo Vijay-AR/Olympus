@@ -91,7 +91,7 @@ const SavingCard = ({
   return (
     <div className="container mx-auto">
       <div className="card mt-8 shadow-lg">
-        <div className="card-header bg-gray-500">
+        <div className="card-header bg-gray-300">
           <h5 className="font-semibold text-center text-lg">
             Title - {props.title}
           </h5>
@@ -110,7 +110,7 @@ const SavingCard = ({
               <div className="mb-2">Completion:</div>
               <div className="progress">
                 <div
-                  className="progress-bar bg-gray-500"
+                  className="progress-bar bg-gray-300"
                   role="progressbar"
                   style={{ width: `${percentage > 100 ? 100 : percentage}%` }}
                   aria-valuenow={percentage}
@@ -154,7 +154,7 @@ const SavingCard = ({
               </button>
             </div>
             <div className="modal-body">
-              <label htmlFor="title" className="text-white">
+              <label htmlFor="title" className="text-black">
                 Title:
               </label>
               <input
@@ -165,7 +165,7 @@ const SavingCard = ({
                 required
                 className="form-control"
               />
-              <label htmlFor="currAmt" className="text-white">
+              <label htmlFor="currAmt" className="text-black">
                 Current Amount:
               </label>
               <input
@@ -176,7 +176,7 @@ const SavingCard = ({
                 required
                 className="form-control"
               />
-              <label htmlFor="targetAmt" className="text-white">
+              <label htmlFor="targetAmt" className="text-black">
                 Goal Amount:
               </label>
               <input
@@ -201,7 +201,7 @@ const SavingCard = ({
         </div>
       </div>
     </div>
-  ); 
+  );
 };
 
 export default SavingCard;
