@@ -36,8 +36,8 @@ const GroupCard = ({
     );
 
     setCheckedState(updatedCheckedState);
-    const updatedFriends = user.friends.filter((friend, index) =>
-      updatedCheckedState[index]
+    const updatedFriends = user.friends.filter(
+      (friend, index) => updatedCheckedState[index]
     );
 
     setFriends(updatedFriends);
@@ -75,7 +75,7 @@ const GroupCard = ({
         `http://localhost:3001/group/remove/${groupData._id}`
       );
       console.log(res);
-      alert(res.data.message)
+      alert(res.data.message);
       const delgroup = res.data.groupp;
       setgroupData(allgroupsdata.filter((data) => data._id != delgroup._id));
     } catch (err) {
@@ -99,9 +99,16 @@ const GroupCard = ({
                       type="text"
                       value={groupData.groupCode}
                       readOnly
-                      className={`px-2 py-1 border w-[100%] border-gray-300 rounded-md ${thememode === "dark" ? "bg-[#3a3a3a] text-white" : "bg-white text-black"} focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                      className={`px-2 py-1 border w-[100%] border-gray-300 rounded-md ${
+                        thememode === "dark"
+                          ? "bg-[#3a3a3a] text-white"
+                          : "bg-white text-black"
+                      } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                     />
-                    <CopyToClipboard text={groupData.groupCode} onCopy={handleCopyToClipboard}>
+                    <CopyToClipboard
+                      text={groupData.groupCode}
+                      onCopy={handleCopyToClipboard}
+                    >
                       <button className="ml-2 text-xl text-gray-500 hover:text-gray-700 transition duration-150">
                         <MdContentCopy />
                       </button>
@@ -141,9 +148,16 @@ const GroupCard = ({
           </div>
         </Card.Body>
       </Card>
-      <Modal show={showAddFriend} onHide={handleAddFriendClose} animation={false} centered>
+      <Modal
+        show={showAddFriend}
+        onHide={handleAddFriendClose}
+        animation={false}
+        centered
+      >
         <Modal.Header className="bg-[#e2e8f0]">
-          <Modal.Title className="text-xl font-bold text-[#1b263b]">Select friends to be added</Modal.Title>
+          <Modal.Title className="text-xl font-bold text-[#1b263b]">
+            Select friends to be added
+          </Modal.Title>
           <button
             type="button"
             className="absolute top-0 right-0 mt-2 mr-2 text-black bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-full p-2"
@@ -157,7 +171,9 @@ const GroupCard = ({
         <Modal.Body className="bg-[#e2e8f0] text-[#1b263b] p-4">
           <ul className="friends-list space-y-2">
             {user[0] ? (
-              <div className="text-center text-gray-600">No Friend in your friend list</div>
+              <div className="text-center text-gray-600">
+                No Friend in your friend list
+              </div>
             ) : (
               user.friends.map((name, index) => (
                 <li key={index} className="flex items-center">
@@ -171,7 +187,10 @@ const GroupCard = ({
                       onChange={() => handleOnChange(index)}
                       className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <label htmlFor={`custom-checkbox-${index}`} className="ml-2 text-gray-700">
+                    <label
+                      htmlFor={`custom-checkbox-${index}`}
+                      className="ml-2 text-gray-700"
+                    >
                       {name}
                     </label>
                   </div>

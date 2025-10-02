@@ -246,15 +246,27 @@ export default function SimplifyDebt({ user, thememode, toggle }) {
               comments.map((comment) => (
                 <div
                   key={comment._id}
-                  className="bg-slate-700 flex flex-col justify-end p-4 my-2 rounded-md shadow-sm"
+                  className={`flex p-4 my-2 rounded-md shadow-sm ${
+                    comment.username === user.username
+                      ? "justify-end"
+                      : "justify-start"
+                  }`}
                 >
-                  <p className="text-sm text-slate-400 mb-1">
-                    ~{" "}
-                    {comment.username === user.username
-                      ? "Me"
-                      : comment.username}
-                  </p>
-                  <p className="text-slate-200 break-words">{comment.text}</p>
+                  <div
+                    className={`p-4 rounded-lg ${
+                      comment.username === user.username
+                        ? "bg-blue-500 text-white self-end"
+                        : "bg-gray-700 text-white self-start"
+                    }`}
+                  >
+                    <p className="text-sm text-gray-300 mb-1">
+                      ~{" "}
+                      {comment.username === user.username
+                        ? "Me"
+                        : comment.username}
+                    </p>
+                    <p className="break-words">{comment.text}</p>
+                  </div>
                 </div>
               ))
             )}
@@ -267,17 +279,22 @@ export default function SimplifyDebt({ user, thememode, toggle }) {
                 handleAddComment();
               }}
             >
-              <button className="rounded-md transition ease-in-out delay-150 bg-slate-600 hover:bg-slate-700 hover:scale-105 duration-300 text-white font-bold px-6 py-2 m-2">
-                Send
-              </button>
-              <input
-                type="text"
-                id="commentText"
-                value={commentText}
-                onChange={handleCommentChange}
-                placeholder="Type your message here"
-                className="w-3/4 m-2 p-2 border text-slate-900 border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  id="commentText"
+                  value={commentText}
+                  onChange={handleCommentChange}
+                  placeholder="Type your message here"
+                  className="w-full m-2 p-2 border text-slate-900 border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="rounded-md transition ease-in-out delay-150 bg-slate-600 hover:bg-slate-700 hover:scale-105 duration-300 text-white font-bold px-6 py-2 m-2"
+                >
+                  Send
+                </button>
+              </div>
             </form>
           </div>
           {/* simplified output div */}

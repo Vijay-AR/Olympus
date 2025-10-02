@@ -9,9 +9,8 @@ import "./Navbar.css";
 import { FaRegEnvelope } from "react-icons/fa";
 import { useAuth } from "../../Context/AuthContext";
 
-
-function Navbar({flag }) {
-  const {logout} = useAuth();
+function Navbar({ flag }) {
+  const { logout } = useAuth();
   const [navuser, setNavuser] = useState({});
   const [showNav, setShowNav] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ function Navbar({flag }) {
           navigate("/dashboard");
         }}
       >
-        Olympus
+        Coin Change
       </div>
 
       {/* Navigation Links */}

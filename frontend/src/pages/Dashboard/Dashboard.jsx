@@ -39,7 +39,7 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
   // Functions to handle input
   const handleTransInput = (name) => (e) => {
     setTransInput({ ...transInput, [name]: e.target.value });
-    setErrors({ ...errors, [name]: '' }); // Clear error message when user types
+    setErrors({ ...errors, [name]: "" }); // Clear error message when user types
   };
 
   // Handle Filter Input
@@ -163,8 +163,8 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
 
     if (Object.keys(newErrors).length > 1) {
       setErrors(newErrors);
-      console.log(Object.keys(newErrors).length)
-      return ;
+      console.log(Object.keys(newErrors).length);
+      return;
     }
 
     console.log(transInput);
@@ -196,7 +196,7 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
     <div className="bg-gray-900 h-[90vh]">
       <Navbar />
       <div className="font-extrabold text-5xl mx-4 mt-4 underline underline-offset-3 decoration-slate-400 text-white">
-        Welcome {user._id ? ', ' + user.username + '!' : <div></div>}
+        Welcome {user._id ? ", " + user.username + "!" : <div></div>}
       </div>
       <div className="mt-2 mb-2 mx-4 text-gray-600 dark:text-gray-400 text-2xl">
         Let's add some transactions!
@@ -370,7 +370,9 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
               min="0"
               required
             />
-            {errors.amount && <div className="text-red-500">{errors.amount}</div>}
+            {errors.amount && (
+              <div className="text-red-500">{errors.amount}</div>
+            )}
           </div>
           <div>
             <label
@@ -387,7 +389,9 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
               className="w-full px-3 py-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            {errors.category && <div className="text-red-500">{errors.category}</div>}
+            {errors.category && (
+              <div className="text-red-500">{errors.category}</div>
+            )}
           </div>
           <div>
             <label htmlFor="desc" className="block font-medium text-[#1b263b]">
@@ -415,7 +419,9 @@ const Dashboard = ({ user, thememode, toggle, setUser }) => {
                 required
               />
               <FaCalendarAlt
-                onClick={() => document.querySelector('input[name="date"]').showPicker()}
+                onClick={() =>
+                  document.querySelector('input[name="date"]').showPicker()
+                }
                 className="absolute right-3 top-3 text-gray-500 cursor-pointer"
               />
               {errors.date && <div className="text-red-500">{errors.date}</div>}

@@ -189,14 +189,24 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
       </Card>
 
       {/* Edit Modal */}
-      <Modal show={showEditModal} onHide={handleCloseEditModal} animation={false} centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#007BFF", color: "#FFFFFF" }}>
+      <Modal
+        show={showEditModal}
+        onHide={handleCloseEditModal}
+        animation={false}
+        centered
+      >
+        <Modal.Header
+          closeButton
+          style={{ backgroundColor: "#007BFF", color: "#FFFFFF" }}
+        >
           <Modal.Title>Edit Bill</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleEditSubmit}>
             <div className="mb-3">
-              <label htmlFor="amount" style={{ color: "#333333" }}>Amount:</label>
+              <label htmlFor="amount" style={{ color: "#333333" }}>
+                Amount:
+              </label>
               <input
                 type="number"
                 value={amount}
@@ -205,11 +215,15 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
                 required
                 className={`form-control ${formErrors.amount && "is-invalid"}`}
               />
-              {formErrors.amount && <div className="invalid-feedback">{formErrors.amount}</div>}
+              {formErrors.amount && (
+                <div className="invalid-feedback">{formErrors.amount}</div>
+              )}
             </div>
 
             <div className="mb-3">
-              <label htmlFor="person" style={{ color: "#333333" }}>To Whom:</label>
+              <label htmlFor="person" style={{ color: "#333333" }}>
+                To Whom:
+              </label>
               <input
                 type="text"
                 name="person"
@@ -218,11 +232,15 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
                 required
                 className={`form-control ${formErrors.toWhom && "is-invalid"}`}
               />
-              {formErrors.toWhom && <div className="invalid-feedback">{formErrors.toWhom}</div>}
+              {formErrors.toWhom && (
+                <div className="invalid-feedback">{formErrors.toWhom}</div>
+              )}
             </div>
 
             <div className="mb-3">
-              <label htmlFor="title" style={{ color: "#333333" }}>Title:</label>
+              <label htmlFor="title" style={{ color: "#333333" }}>
+                Title:
+              </label>
               <input
                 type="text"
                 name="title"
@@ -231,11 +249,15 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
                 required
                 className={`form-control ${formErrors.title && "is-invalid"}`}
               />
-              {formErrors.title && <div className="invalid-feedback">{formErrors.title}</div>}
+              {formErrors.title && (
+                <div className="invalid-feedback">{formErrors.title}</div>
+              )}
             </div>
 
             <div className="mb-3">
-              <label htmlFor="date" style={{ color: "#333333" }}>Date:</label>
+              <label htmlFor="date" style={{ color: "#333333" }}>
+                Date:
+              </label>
               <input
                 type="date"
                 name="dueDate"
@@ -244,12 +266,18 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
                 required
                 className={`form-control ${formErrors.dueDate && "is-invalid"}`}
               />
-              {formErrors.dueDate && <div className="invalid-feedback">{formErrors.dueDate}</div>}
+              {formErrors.dueDate && (
+                <div className="invalid-feedback">{formErrors.dueDate}</div>
+              )}
             </div>
 
             <div className="modal-footer">
-              <Button variant="secondary" onClick={handleCloseEditModal}>Cancel</Button>
-              <Button variant="primary" type="submit">Save</Button>
+              <Button variant="secondary" onClick={handleCloseEditModal}>
+                Cancel
+              </Button>
+              <Button variant="primary" type="submit">
+                Save
+              </Button>
             </div>
           </form>
         </Modal.Body>
@@ -262,8 +290,12 @@ const BillCard = ({ billflag, setbillflag, user, BillData, thememode }) => {
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this bill?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDeleteModal}>Cancel</Button>
-          <Button variant="danger" onClick={() => handleDelete(BillData._id)}>Delete</Button>
+          <Button variant="secondary" onClick={handleCloseDeleteModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={() => handleDelete(BillData._id)}>
+            Delete
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

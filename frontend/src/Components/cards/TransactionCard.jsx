@@ -26,9 +26,7 @@ const TransactionCard = ({
   const [errors, setErrors] = useState({});
 
   if (!transactionData) {
-    return (
-      <div>No Transactions Exist</div>
-    );
+    return <div>No Transactions Exist</div>;
   }
 
   const { type, amount, category, desc, date, currency } = transInput;
@@ -36,7 +34,7 @@ const TransactionCard = ({
   //  ---------------- Input ---------------------
   const handleTransInput = (name) => (e) => {
     setTransInput({ ...transInput, [name]: e.target.value });
-    setErrors({ ...errors, [name]: '' }); // Clear error message when user types
+    setErrors({ ...errors, [name]: "" }); // Clear error message when user types
   };
 
   // -------------------- functions to handle open and close ---------------
@@ -111,7 +109,8 @@ const TransactionCard = ({
         <Card.Body className="flex flex-col justify-between">
           <div className="flex justify-between items-center mb-2 text-gray-600">
             <Card.Text className="text-md font-semibold ">
-              Amount: <span className="text-green-600">₹{transactionData.amount}</span>
+              Amount:{" "}
+              <span className="text-green-600">₹{transactionData.amount}</span>
             </Card.Text>
             <div className="flex gap-2">
               <AiFillEdit
@@ -186,7 +185,9 @@ const TransactionCard = ({
             >
               <option value="inr">INR</option>
             </select>
-            {errors.currency && <div className="text-red-500">{errors.currency}</div>}
+            {errors.currency && (
+              <div className="text-red-500">{errors.currency}</div>
+            )}
           </div>
 
           {/* Amount Input */}
@@ -204,7 +205,9 @@ const TransactionCard = ({
               }`}
               required
             />
-            {errors.amount && <div className="text-red-500">{errors.amount}</div>}
+            {errors.amount && (
+              <div className="text-red-500">{errors.amount}</div>
+            )}
           </div>
 
           {/* Category Input */}
@@ -220,7 +223,9 @@ const TransactionCard = ({
               className="w-full px-3 py-2 border border-gray-300 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            {errors.category && <div className="text-red-500">{errors.category}</div>}
+            {errors.category && (
+              <div className="text-red-500">{errors.category}</div>
+            )}
           </div>
 
           {/* Description Input */}
@@ -252,7 +257,9 @@ const TransactionCard = ({
                 required
               />
               <FaCalendarAlt
-                onClick={() => document.querySelector('input[name="date"]').showPicker()}
+                onClick={() =>
+                  document.querySelector('input[name="date"]').showPicker()
+                }
                 className="absolute right-3 top-3 text-gray-500 cursor-pointer"
               />
               {errors.date && <div className="text-red-500">{errors.date}</div>}

@@ -236,7 +236,9 @@ function Dues({ user, thememode, toggle }) {
                 }`}
               />
               {formErrors.amount && (
-                <span className="text-sm text-red-500">{formErrors.amount}</span>
+                <span className="text-sm text-red-500">
+                  {formErrors.amount}
+                </span>
               )}
             </div>
 
@@ -257,7 +259,9 @@ function Dues({ user, thememode, toggle }) {
                 }`}
               />
               {formErrors.toWhom && (
-                <span className="text-sm text-red-500">{formErrors.toWhom}</span>
+                <span className="text-sm text-red-500">
+                  {formErrors.toWhom}
+                </span>
               )}
             </div>
 
@@ -279,7 +283,9 @@ function Dues({ user, thememode, toggle }) {
                 <option value="inr">INR</option>
               </select>
               {formErrors.currency && (
-                <span className="text-sm text-red-500">{formErrors.currency}</span>
+                <span className="text-sm text-red-500">
+                  {formErrors.currency}
+                </span>
               )}
             </div>
 
